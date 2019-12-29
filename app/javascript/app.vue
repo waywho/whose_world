@@ -7,8 +7,6 @@
 </template>
 
 <script>
-  import './assets/main.css'
-
 export default {
   data: function () {
     return {
