@@ -2,6 +2,7 @@
   <div id="app">
     <router-view></router-view>
     <p>{{ message }}</p>
+    <div class="bg-red-500 p-3 text-white">Test</div>
   </div>
 </template>
 
@@ -15,7 +16,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped >
 p {
   font-size: 2em;
   text-align: center;
