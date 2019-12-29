@@ -5,6 +5,7 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
     './app/**/*.html',
     './app/**/*.vue',
     './app/**/*.jsx',
+    './app/**/*.css',
     // etc.
   ],
 
@@ -24,8 +25,8 @@ module.exports = {
     }),
     require('tailwindcss'),
     require('autoprefixer'),
-    //   ...process.env.NODE_ENV === 'production'
-    // ? [purgecss]
-    // : []
+      ...process.env.NODE_ENV === 'production'
+    ? [purgecss]
+    : []
   ]
 }
