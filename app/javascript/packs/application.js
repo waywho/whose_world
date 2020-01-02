@@ -16,3 +16,43 @@
 // const imagePath = (name) => images(name, true)
 
 console.log('Hello World from Webpacker')
+
+import Vue from 'vue'
+import App from '../app.vue'
+import '../assets/main.css'
+import router from '../router'
+import { store } from '../store/store'
+import Buefy from 'buefy'
+import 'buefy/dist/buefy.css'
+
+document.addEventListener('DOMContentLoaded', () => {
+	Vue.use(Buefy, {
+		defaultFieldLabelPosition: 'on-border'
+	})
+
+	Vue.filter('capitalize', function (value) {
+	  if (!value) return ''
+	  value = value.toString()
+	  return value.charAt(0).toUpperCase() + value.slice(1)
+	})
+
+	Vue.filter('camel-to-space', function (value) {
+	  if (value !== null && value !== undefined) {
+	    value = value.replace(/([A-Z])/g, " $1");
+	    return value.charAt(0).toUpperCase() + value.slice(1)
+	  } else {
+	    return ''
+	  }
+	})
+	
+	const app = new Vue({
+	 render: h => h(App),
+	 router: router,
+	 store: store
+	}).$mount()
+	document.body.appendChild(app.$el)
+
+
+
+	console.log(app)
+})

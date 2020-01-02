@@ -1,17 +1,17 @@
-const purgecss = require('@fullhuman/postcss-purgecss')({
+// const purgecss = require('@fullhuman/postcss-purgecss')({
 
-  // Specify the paths to all of the template files in your project 
-  content: [
-    './app/**/*.html',
-    './app/**/*.vue',
-    './app/**/*.jsx',
-    './app/**/*.css',
-    // etc.
-  ],
+//   // Specify the paths to all of the template files in your project 
+//   content: [
+//     './app/**/*.html',
+//     './app/**/*.vue',
+//     './app/**/*.jsx',
+//     './app/**/*.css',
+//     // etc.
+//   ],
 
-  // Include any special characters you're using in this regular expression
-  defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
-})
+//   // Include any special characters you're using in this regular expression
+//   defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
+// })
 
 module.exports = {
   plugins: [
@@ -23,10 +23,10 @@ module.exports = {
       },
       stage: 3
     }),
-    require('tailwindcss'),
-    require('autoprefixer'),
-      ...process.env.NODE_ENV === 'production'
-    ? [purgecss]
-    : []
+    // require('tailwindcss'),
+    // require('autoprefixer'),
+    //   ...process.env.NODE_ENV === 'production'
+    // ? [purgecss]
+    // : []
   ]
 }

@@ -1,29 +1,14 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
+	include Knock::Authenticable
 
+	private
 
-	def index
-		render '../views/index'
+	def authenticate_admin
+		current_user.admin?
 	end
 
-
-	def render_resource(resource)
-		if resource.errors.empty?
-			render json: resource
-		else
-			validation_error(resource)
-		end
-	end
-
-	def validation_error(resource)
-	 render json: {
-	   errors: [
-	     {
-	       status: '400',
-	       title: 'Bad Request',
-	       detail: resource.errors,
-	       code: '100'
-	     }
-	   ]
-	 }, status: :bad_request
+	def render_token_payload(entity)
+		auth_token = Knock::AuthToken.new payload: entity.to_token_payload
+      render json: { 'body': auth_token }, status: :created
 	end
 end

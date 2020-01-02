@@ -1,21 +1,16 @@
 <template>
-  <div id="app">
-    <router-view class="container" />
+  <div>
+    <p>{{ message }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-
-  },
+  name: 'dashboard',
   data: function () {
     return {
-      message: "Hello Vue!"
+      message: "Dashboard"
     }
-  },
-  created() {
-    
   }
 }
 </script>
