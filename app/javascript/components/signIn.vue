@@ -30,11 +30,6 @@ export default {
       formFields: {
         email: { value: '', type: 'email', message: null, classType: null},
         password: { value: '', type: 'password', message: null, classType: null},
-      },
-      message: {
-        show: false,
-        type: null,
-        content: null
       }
     }
   },
@@ -52,9 +47,7 @@ export default {
       this.$store.dispatch('authenticateUser', formData).then(() => {
         this.$router.replace({ path: '/admin/dashboard' })
       }).catch(error => {
-        this.message.show = true
-        this.message.type = 'is-danger'
-        this.message.content = 'Oops, we cannot authenticate your credentials'
+        this.showGeneralMessage(error.response.data.statusText, 'is-danger')
       })
     }
   }

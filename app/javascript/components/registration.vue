@@ -2,6 +2,9 @@
   <div class="columns is-desktop">
     <div class="column is-half is-offset-one-quarter">
       <h1 class="title is-2">Create Account</h1>
+      <b-message v-if="message.show" :type="message.type" aria-close-label="Close message">
+        {{message.content}}
+      </b-message>
       <form @submit.prevent="onSubmit">
         <b-field v-for="field, key, id in formFields" :id="key" :key="key" :label="key | camel-to-space" :type="formFields[key].classType" :message="formFields[key].message">
           <b-input v-model="formFields[key].value" :type="formFields[key].type"></b-input>
@@ -58,6 +61,7 @@ export default {
           this.$router.replace({ path: '/admin/dashboard' })
         })
         .catch( error => {
+          console.log(error)
           this.showFieldErrors(error)
         })
     }
