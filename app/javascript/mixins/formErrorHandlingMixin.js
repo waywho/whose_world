@@ -1,4 +1,13 @@
-export default { 
+export default {
+	data () {
+		return {			
+	      message: {
+	        show: false,
+	        type: null,
+	        content: null
+	      }
+		}
+	},
 	methods: {
 		requiredFieldsErrors: function(fieldKeyArray) {
 			let invalidFields = false
@@ -43,17 +52,27 @@ export default {
 			})
 		},
 		showFieldErrors: function (errorObject) {
-			// console.log(errorObject.response)
+			console.log(errorObject.response)
 			// console.log(errorObject.response.data.errors[0].details)
-			let errorDetails = errorObject.response.data.errors[0].details
+			
 			// console.log(Object.keys(errorDetails))
-			Object.keys(errorDetails).forEach(key => {
-				// console.log(`${key} ${errorDetails[key].join()}`)
-				console.log(key)
-				console.log(this.formFields[key])
-				this.formFields[key].classType = 'is-danger'
-				this.formFields[key].message = `${key.charAt(0).toUpperCase() + key.slice(1)} ${errorDetails[key].join(', ')}`
-			})
+			if(errorObject.response.data.data == "" || errorObject.response.data.data == undefined || errorObject.response.data.data == null ) {
+				this.showGeneralMessage(errorObject.response.statusText, 'is-danger')
+			} else {
+				let errorDetails = errorObject.response.data.errors[0].details
+					Object.keys(errorDetails).forEach(key => {
+					// console.log(`${key} ${errorDetails[key].join()}`)
+					console.log(key)
+					console.log(this.formFields[key])
+					this.formFields[key].classType = 'is-danger'
+					this.formFields[key].message = `${key.charAt(0).toUpperCase() + key.slice(1)} ${errorDetails[key].join(', ')}`
+				})
+			}
+		},
+		showGeneralMessage: function (message, type) {
+			this.message.show = true
+      	this.message.type = type
+      	this.message.content = message
 		}
 	}
 
